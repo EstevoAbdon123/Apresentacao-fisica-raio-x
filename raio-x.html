@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Raio X — a luz que atravessa o corpo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#edf2f3;--ink:#10222a;--muted:#4b6068;--film:#0c1a20;--bone:#e3f5f8;--beam:#e9a92f;--line:#c3d1d5;--bar:#0c1a20;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0f1b21;--ink:#dbe8ea;--muted:#8fa6ad;--line:#26393f;--bar:#e3f5f8}}
+:root[data-theme="dark"]{--paper:#0f1b21;--ink:#dbe8ea;--muted:#8fa6ad;--line:#26393f;--bar:#e3f5f8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.7 Literata,Georgia,serif}
+h1,h2,h3{font-family:Archivo,"Arial Narrow",Arial,sans-serif;font-weight:900;line-height:1.02;margin:0}
+.hero{background:var(--film);color:var(--bone)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;padding-top:56px;padding-bottom:56px}
+h1{font-size:clamp(4rem,12vw,8.5rem);letter-spacing:-.03em}
+.hero p{max-width:30ch;font-size:1.25rem;color:#a9c4cb;margin:18px 0 0}
+.viewer svg{width:100%;height:auto;display:block;border-radius:6px}
+.viewer label{display:block;margin-top:12px;font-size:.9rem;color:#a9c4cb}
+input[type=range]{width:100%;accent-color:var(--beam);margin:6px 0 0;height:28px}
+input[type=range]:focus-visible{outline:2px solid var(--beam);outline-offset:3px}
+.cap{font-size:.85rem;color:#7d9aa2;margin:6px 0 0}
+section{padding:72px 0 0}
+section:last-of-type{padding-bottom:72px}
+h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:22px;max-width:18ch}
+.lead{max-width:62ch;color:var(--muted)}
+.steps{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid var(--beam);counter-reset:s}
+.steps li{padding:20px 22px 0 0;counter-increment:s}
+.steps li::before{content:counter(s);font:900 2.4rem Archivo,Arial,sans-serif;color:var(--beam);display:block;line-height:1}
+.steps h3{font-size:1.3rem;margin:8px 0 6px}
+.steps p{margin:0;color:var(--muted);font-size:1rem}
+.tissue{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;align-items:center;margin-top:26px;max-width:720px}
+.tissue .sw{height:30px;border-radius:3px;border:1px solid var(--line)}
+.tissue b{font-weight:600}
+.tl{list-style:none;margin:28px 0 0;padding:0 0 0 22px;border-left:2px solid var(--line);max-width:680px}
+.tl li{position:relative;padding:0 0 26px}
+.tl li::before{content:"";position:absolute;left:-29px;top:.65em;width:12px;height:12px;border-radius:50%;background:var(--beam)}
+.tl strong{font-family:Archivo,Arial,sans-serif;font-weight:900;font-size:1.3rem;display:block}
+.tl span{color:var(--muted)}
+dl{margin:26px 0 0;display:grid;grid-template-columns:200px 1fr;gap:16px 24px;max-width:760px}
+dt{font-family:Archivo,Arial,sans-serif;font-weight:800;font-size:1.15rem}
+dd{margin:0;color:var(--muted)}
+.dose{margin-top:26px;max-width:720px;display:grid;grid-template-columns:200px 1fr 90px;gap:10px 16px;align-items:center;font-size:.98rem}
+.dose i{display:block;height:14px;background:var(--bar);border-radius:2px}
+.dose em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:.9rem;color:var(--muted);margin-top:18px;max-width:62ch}
+footer{background:var(--film);color:#8fa6ad;padding:26px 0;font-size:.9rem}
+@media (max-width:800px){
+.hero .wrap{grid-template-columns:1fr;padding-top:40px;padding-bottom:40px}
+.steps{grid-template-columns:1fr}.steps li{padding-bottom:14px}
+dl{grid-template-columns:1fr;gap:2px}dt{margin-top:14px}
+.dose{grid-template-columns:1fr 70px}.dose i{grid-column:1/-1;grid-row:2}.dose span{grid-row:1}.dose em{grid-row:1}
+.dose{row-gap:4px}
+.tissue{grid-template-columns:110px 1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap">
+<div>
+<h1>Raio X</h1>
+<p>Uma luz invisível que atravessa o corpo e desenha o que está por dentro.</p>
+</div>
+<div class="viewer">
+<svg viewBox="0 0 400 440" role="img" aria-label="Mão em luz visível à esquerda e em raio X à direita, mostrando os ossos">
+<defs>
+<g id="fl"></g>
+<clipPath id="cp"><rect id="cr" x="0" y="0" width="200" height="440"/></clipPath>
+<filter id="gl"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="400" height="440" fill="#d4cbbf"/>
+<use href="#fl" style="--f:#dcae92"/>
+<g clip-path="url(#cp)">
+<rect width="400" height="440" fill="#08141a"/>
+<use href="#fl" style="--f:#24454f"/>
+<g id="bn" filter="url(#gl)" stroke="#e3f5f8" stroke-linecap="round" fill="none"></g>
+</g>
+<line id="dv" x1="200" x2="200" y1="0" y2="440" stroke="#e9a92f" stroke-width="2"/>
+</svg>
+<label for="rg">Arraste para ver por dentro</label>
+<input id="rg" type="range" min="0" max="100" value="0">
+<p class="cap">A aliança do anelar também aparece: o metal bloqueia os raios, como na primeira radiografia, de 1895.</p>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+<section>
+<h2>Como a imagem se forma</h2>
+<p class="lead">O raio X é uma radiação eletromagnética, como a luz, mas com energia suficiente para atravessar tecidos moles. A imagem é a sombra do que ficou pelo caminho.</p>
+<ol class="steps">
+<li><h3>O tubo emite o feixe</h3><p>Elétrons em alta velocidade atingem um alvo de metal e produzem raios X.</p></li>
+<li><h3>O corpo absorve diferente</h3><p>Ossos seguram quase tudo. Músculos, gordura e órgãos deixam passar mais. O ar deixa passar quase tudo.</p></li>
+<li><h3>O detector registra</h3><p>Onde passa muita radiação, a imagem escurece. Onde o feixe é barrado, fica branca.</p></li>
+</ol>
+</section>
+
+<section>
+<h2>O que aparece branco e o que aparece preto</h2>
+<p class="lead">Quanto mais denso o tecido, mais raios ele absorve e mais claro ele fica na chapa.</p>
+<div class="tissue">
+<div class="sw" style="background:#f4fbfc"></div><div><b>Osso</b> e metal: absorção alta</div>
+<div class="sw" style="background:#a9b8bc"></div><div><b>Músculo</b> e órgãos: média</div>
+<div class="sw" style="background:#5d7076"></div><div><b>Gordura</b>: média a baixa</div>
+<div class="sw" style="background:#070d10"></div><div><b>Pulmão</b> cheio de ar: muito baixa</div>
+</div>
+</section>
+
+<section>
+<h2>Uma descoberta feita por acaso</h2>
+<ul class="tl">
+<li><strong>1895</strong><span>O físico alemão Wilhelm Röntgen percebe uma radiação desconhecida e a chama de “X”. Em dezembro, radiografa a mão da esposa, Anna Bertha.</span></li>
+<li><strong>1896</strong><span>Hospitais de vários países já usam a técnica para localizar fraturas e objetos dentro do corpo.</span></li>
+<li><strong>1901</strong><span>Röntgen recebe o primeiro Prêmio Nobel de Física.</span></li>
+<li><strong>Anos 1970</strong><span>Surge a tomografia computadorizada, que combina muitas imagens de raio X para montar cortes do corpo.</span></li>
+</ul>
+</section>
+
+<section>
+<h2>Onde o raio X é usado</h2>
+<dl>
+<dt>Fraturas</dt><dd>Mostra rachaduras e desalinhamentos nos ossos.</dd>
+<dt>Pulmões</dt><dd>Ajuda a identificar pneumonia e outras alterações no tórax.</dd>
+<dt>Dentes</dt><dd>Revela cáries entre os dentes e o estado da raiz.</dd>
+<dt>Aeroportos</dt><dd>Escaneia bagagens para ver o conteúdo sem abrir a mala.</dd>
+<dt>Indústria</dt><dd>Inspeciona soldas e peças em busca de defeitos internos.</dd>
+</dl>
+</section>
+
+<section>
+<h2>E a segurança?</h2>
+<p class="lead">Raio X é radiação ionizante, por isso os exames são feitos só quando há motivo e com a menor dose possível. Compare as doses típicas, em milisieverts (mSv):</p>
+<div class="dose">
+<span>Raio X dentário</span><i style="width:18%"></i><em>~0,005</em>
+<span>Radiação natural, 1 dia</span><i style="width:23%"></i><em>~0,008</em>
+<span>Raio X de tórax</span><i style="width:51%"></i><em>~0,1</em>
+<span>Mamografia</span><i style="width:67%"></i><em>~0,4</em>
+<span>Tomografia de abdômen</span><i style="width:100%"></i><em>~8</em>
+</div>
+<p class="note">Valores aproximados, em escala logarítmica; variam com o equipamento e o paciente. Quem indica o exame é o profissional de saúde.</p>
+</section>
+</main>
+
+<footer><div class="wrap">Conteúdo educativo. Não substitui orientação médica.</div></footer>
+
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg";
+var F=[
+{m:[185,385],k:[140,305],a:-42,L:[46,38]},
+{m:[190,350],k:[140,215],a:-9,L:[56,36,28]},
+{m:[200,350],k:[185,198],a:-2,L:[62,40,30]},
+{m:[212,350],k:[230,208],a:6,L:[56,37,29]},
+{m:[222,352],k:[270,236],a:16,L:[44,28,24]}];
+var fl='<path d="M122 238 L285 256 L250 405 L172 405 Z" fill="var(--f)" stroke="var(--f)" stroke-width="30" stroke-linejoin="round"/>';
+var bn='',ring='';
+F.forEach(function(f,fi){
+var r=f.a*Math.PI/180,dx=Math.sin(r),dy=-Math.cos(r),x=f.k[0],y=f.k[1];
+bn+=ln(f.m[0],f.m[1],x-dx*7,y-dy*7,9);
+var px=x,py=y;
+f.L.forEach(function(len,i){
+bn+=ln(px+dx*5,py+dy*5,px+dx*(len-3),py+dy*(len-3),8-i);
+px+=dx*len;py+=dy*len;});
+fl+='<line x1="'+x+'" y1="'+y+'" x2="'+px+'" y2="'+py+'" stroke="var(--f)" stroke-width="30" stroke-linecap="round"/>';
+if(fi==3){var cx=x+dx*26,cy=y+dy*26;ring='<ellipse cx="'+cx+'" cy="'+cy+'" rx="13" ry="4.5" transform="rotate('+f.a+' '+cx+' '+cy+')" stroke="#fff" stroke-width="3.5"/>';}
+});
+[[178,372],[198,376],[218,374],[190,392],[210,394],[170,392]].forEach(function(c){bn+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="9" fill="#e3f5f8" stroke="none" opacity=".85"/>';});
+bn+='<line x1="186" y1="405" x2="186" y2="440" stroke-width="12"/><line x1="214" y1="405" x2="214" y2="440" stroke-width="10"/>';
+function ln(a,b,c,d,w){return '<line x1="'+a+'" y1="'+b+'" x2="'+c+'" y2="'+d+'" stroke-width="'+w+'"/>';}
+document.getElementById('fl').innerHTML=fl;
+document.getElementById('bn').innerHTML=bn+ring;
+var rg=document.getElementById('rg'),cr=document.getElementById('cr'),dv=document.getElementById('dv');
+function set(v){var x=v*4;cr.setAttribute('width',x);dv.setAttribute('x1',x);dv.setAttribute('x2',x);}
+rg.addEventListener('input',function(){set(rg.value);});
+set(0);
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+var t0=null,touched=false;rg.addEventListener('pointerdown',function(){touched=true;});
+function step(t){if(touched)return;if(t0===null)t0=t;var p=Math.min((t-t0)/1800,1),e=1-Math.pow(1-p,3);rg.value=55*e;set(rg.value);if(p<1)requestAnimationFrame(step);}
+setTimeout(function(){requestAnimationFrame(step);},500);
+}else{rg.value=50;set(50);}
+})();
+</script>
+</body>
+</html>
